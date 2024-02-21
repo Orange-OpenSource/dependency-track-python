@@ -47,3 +47,41 @@ class Components:
             description = f"Error while getting dependency for component {uuid}"
             raise DependencyTrackApiError(description, response)
 
+
+    def get_project_components(self, uuid):
+        """Returns a list of components for given project
+        
+        API Endpoint: GET /component/project/{uuid}
+
+        Parameters
+        ----------
+        uuid : str
+            The UUID of the project to retrieve components for
+
+        Returns
+        -------
+
+        """
+        response = self.session.get(self.api + f"/component/project/{uuid}", params=self.paginated_param_payload)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            description = f"Error while getting dependency for component {uuid}"
+            raise DependencyTrackApiError(description, response)
+
+    def get_component(self, uuid):
+        """Returns a specific component
+
+        API Endpoint: GET /component/{uuid}
+
+        Parameters
+        ----------
+        uuid : str
+            The UUID of the component to retrieve
+        """
+        response = self.session.get(self.api + f"/component/{uuid}", params=self.paginated_param_payload)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            description = f"Error while getting component {uuid}"
+            raise DependencyTrackApiError(description, response)

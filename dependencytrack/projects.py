@@ -84,4 +84,26 @@ class Projects:
         else:
             description = f"Error while getting project {uuid}"
             raise DependencyTrackApiError(description, response)
-
+    
+    def project_lookup(self, name, version):
+        """Returns specific project by its name and version
+        
+        API Endpoint: GET /project/lookup?name=test&version=0.1.2
+        
+        Parameters
+        ----------
+        name : str
+            Project Name
+        version : str
+            Project Version
+        
+        Returns
+        -------
+        """
+        query = f"?name={name}&version={version}"
+        response = self.session.get(self.api + f"/project/lookup{query}", params=self.paginated_param_payload)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            description = f"Error while lookup the project by name and version"
+            raise DependencyTrackApiError(description, response)

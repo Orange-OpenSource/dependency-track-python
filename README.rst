@@ -9,7 +9,7 @@
 .. |Downloads| image:: https://pypip.in/download/dependency-track/badge.svg?period=week
     :target: https://pypi.python.org/pypi/dependency-track/
     
-A simple wrapper for the Dependency Track REST API.
+A simple wrapper for the Dependency Track REST API. This is fork based on original work of Alvin Chen and his `dependency-track library <https://github.com/alvinchchen/dependency-track-python>`_.
 
 Usage
 =====
@@ -23,7 +23,7 @@ Installation
 
    .. code:: shell
 
-      pip install dependency-track requests
+      pip install dependency-track
 
 Using the API
 -------------
