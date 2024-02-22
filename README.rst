@@ -1,13 +1,13 @@
 |License| |Python Version| |Downloads|
 
 .. |License| image:: https://img.shields.io/badge/license-GPL2.0+-blue.svg
-   :target: https://github.com/alvinchchen/dependency-track-python/LICENSE.md
+   :target: https://github.com/jas02/dependency-track-python/LICENSE.md
 
 .. |Python Version| image:: https://img.shields.io/badge/python-3.6%2C3.7%2C3.8-blue?logo=python
    :target: https://www.python.org/doc/versions/
    
 .. |Downloads| image:: https://pypip.in/download/dependency-track/badge.svg?period=week
-    :target: https://pypi.python.org/pypi/dependency-track/
+    :target: https://pypi.python.org/pypi/dependency-track-ng/
     
 A simple wrapper for the Dependency Track REST API. This is fork based on original work of Alvin Chen and his `dependency-track library <https://github.com/alvinchchen/dependency-track-python>`_.
 
@@ -17,13 +17,13 @@ Usage
 Installation
 ------------
 
-   This project is available as `Python package on PyPi.org <https://pypi.org/project/dependency-track/>`_.
+   This project is available as `Python package on PyPi.org <https://pypi.org/project/dependency-track-ng/>`_.
 
 -  Install DependencyTrack and required dependencies:
 
    .. code:: shell
 
-      pip install dependency-track
+      pip install dependency-track-ng
 
 Using the API
 -------------
@@ -32,7 +32,7 @@ Using the API
 
    .. code:: Python
 
-		from dependencytrack import DependencyTrack
+		from dependencytrack_ng import DependencyTrack
 
 		url = 'http://10.0.0.1:8080'
 

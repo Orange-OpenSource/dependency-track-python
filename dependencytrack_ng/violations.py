@@ -7,14 +7,6 @@ logger.setLevel(logging.DEBUG)
 
 class Violations():
     """Get the information about policy violations
-    
-    API Endpoint: GET /violation/project/{uuid}
-    
-    
-
-
-
-    
     """
     def get_project_violations(self, uuid):
         """Returns a list of all policy violations for a specific project
