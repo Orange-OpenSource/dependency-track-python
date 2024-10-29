@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: GPL-2.0+
 
 import logging
+import json
 
 from .exceptions import AuthorizationError, DependencyTrackApiError
 
@@ -23,11 +24,10 @@ class Components:
         """
         response = self.session.get(self.api + "/component", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Unable to get a list of components"
             raise DependencyTrackApiError(description, response)
-            return None
 
     def get_component_dependency(self, uuid):
         """Get details of project dependency.
@@ -42,7 +42,7 @@ class Components:
         """
         response = self.session.get(self.api + f"/dependency/component/{uuid}", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Error while getting dependency for component {uuid}"
             raise DependencyTrackApiError(description, response)
@@ -64,7 +64,7 @@ class Components:
         """
         response = self.session.get(self.api + f"/component/project/{uuid}", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Error while getting dependency for component {uuid}"
             raise DependencyTrackApiError(description, response)
@@ -81,7 +81,7 @@ class Components:
         """
         response = self.session.get(self.api + f"/component/{uuid}", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Error while getting component {uuid}"
             raise DependencyTrackApiError(description, response)

@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: GPL-2.0+
 
 import logging
+import json
 
 from .exceptions import AuthorizationError, DependencyTrackApiError
 
@@ -22,11 +23,10 @@ class Licenses:
         """
         response = self.session.get(self.api + "/license", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Unable to get a list of components"
             raise DependencyTrackApiError(description, response)
-            return None
             
     def list_concise_licenses(self):
         """List all concise licenses
@@ -39,11 +39,11 @@ class Licenses:
         """
         response = self.session.get(self.api + "/license/concise", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Unable to get a list of components"
             raise DependencyTrackApiError(description, response)
-            return None
+
 
     def get_license(self, licenseId):
         """Get details of license.
@@ -58,7 +58,7 @@ class Licenses:
         """
         response = self.session.get(self.api + f"/license/{licenseId}")
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Error while getting license {licenseId}"
             raise DependencyTrackApiError(description, response)

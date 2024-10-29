@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: GPL-2.0+
 
 import logging
+import json
 
 from .exceptions import AuthorizationError, DependencyTrackApiError
 
@@ -23,11 +24,10 @@ class Projects:
         """
         response = self.session.get(self.api + "/project", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Unable to get a list of projects"
             raise DependencyTrackApiError(description, response)
-            return None
 
     def get_project_property(self, uuid):
         """Get details of project.
@@ -42,7 +42,7 @@ class Projects:
         """
         response = self.session.get(self.api + f"/project/{uuid}/property", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Error while getting property for project {uuid}"
             raise DependencyTrackApiError(description, response)
@@ -62,7 +62,7 @@ class Projects:
         response = self.session.get(self.api + f"/dependency/project/{uuid}", params=self.paginated_param_payload)
         print(response.url)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Error while getting dependency for project {uuid}"
             raise DependencyTrackApiError(description, response)
@@ -80,7 +80,7 @@ class Projects:
         """
         response = self.session.get(self.api + f"/project/{uuid}/", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Error while getting project {uuid}"
             raise DependencyTrackApiError(description, response)
@@ -103,7 +103,7 @@ class Projects:
         query = f"?name={name}&version={version}"
         response = self.session.get(self.api + f"/project/lookup{query}", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Error while lookup the project by name and version"
             raise DependencyTrackApiError(description, response)

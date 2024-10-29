@@ -1,4 +1,5 @@
 import logging
+import json
 
 from .exceptions import AuthorizationError, DependencyTrackApiError
 
@@ -24,7 +25,7 @@ class Version():
         """
         response = self.session.get(f"{self.host}/api/version")
         if response.status_code == 200:
-            return response.json()['version']
+            return json.loads(response.text)['version']
         else:
             description = f"Unable to get a Dependency Track version"
             raise DependencyTrackApiError(description, response)

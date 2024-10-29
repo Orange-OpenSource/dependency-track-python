@@ -17,13 +17,13 @@ Usage
 Installation
 ------------
 
-   This project is available as `Python package on PyPi.org <https://pypi.org/project/dependency-track-ng/>`_.
+   This project is available as `Python package on PyPi.org <https://pypi.org/project/dependency-track-client/>`_.
 
 -  Install DependencyTrack and required dependencies:
 
    .. code:: shell
 
-      pip install dependency-track-ng
+      pip install dependency-track-client
 
 Using the API
 -------------
@@ -32,7 +32,7 @@ Using the API
 
    .. code:: Python
 
-		from dependencytrack_ng import DependencyTrack
+		from dependencytrack_client import DependencyTrack
 
 		url = 'http://10.0.0.1:8080'
 
@@ -55,3 +55,9 @@ Using the API
 		dt.get_license('MIT')
 
 		dt.search('dnsmasq-2.0')
+
+
+Versioning
+----------
+
+Major Version is following [DependencyTrack Major Version](https://github.com/DependencyTrack/dependency-track/releases).
