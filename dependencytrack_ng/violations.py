@@ -1,4 +1,5 @@
 import logging
+import json
 
 from .exceptions import AuthorizationError, DependencyTrackApiError
 
@@ -28,7 +29,7 @@ class Violations():
         """
         response = self.session.get(self.api + f"/violation/project/{uuid}", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Unable to get a Dependency Track policy violation for project"
             raise DependencyTrackApiError(description, response)
