@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: GPL-2.0+
 
 import logging
+import json
 import requests
 
 from .projects import Projects
@@ -72,7 +73,7 @@ class DependencyTrack(Projects, Components, Licenses, Version, Violations):
         """
         response = self.session.get(self.api + f"/search/{query}", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()['results']
+            return json.loads(response.text)['results']
         else:
             description = f"Error while searching"
             raise DependencyTrackApiError(description, response)
@@ -91,7 +92,7 @@ class DependencyTrack(Projects, Components, Licenses, Version, Violations):
         """
         response = self.session.get(self.api + f"/component/?searchText={query}", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Error while component searching"
             raise DependencyTrackApiError(description, response)
@@ -110,7 +111,7 @@ class DependencyTrack(Projects, Components, Licenses, Version, Violations):
         """
         response = self.session.get(self.api + f"/project/?searchText={query}", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Error while project searching"
             raise DependencyTrackApiError(description, response)
@@ -129,7 +130,7 @@ class DependencyTrack(Projects, Components, Licenses, Version, Violations):
         """
         response = self.session.get(self.api + f"/vulnerability/?searchText={query}", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Error while vulnerability searching"
             raise DependencyTrackApiError(description, response)
@@ -148,7 +149,7 @@ class DependencyTrack(Projects, Components, Licenses, Version, Violations):
         """
         response = self.session.get(self.api + f"/license/?searchText={query}", params=self.paginated_param_payload)
         if response.status_code == 200:
-            return response.json()
+            return json.loads(response.text)
         else:
             description = f"Error while license searching"
             raise DependencyTrackApiError(description, response)
