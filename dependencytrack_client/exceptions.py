@@ -2,6 +2,9 @@
 # SPDX-License-Identifier: GPL-2.0+
 
 
+import json
+
+
 class Error(Exception):
     """Base class for exceptions in this module."""
 
@@ -24,7 +27,7 @@ class AuthorizationError(Error):
 
     def __init__(self, description, response):
         self.message = (
-            f"{description}\n{response.json()['message']} ({response.status_code})"
+            f"{description}\n{json.loads(response.text)['message']} ({response.status_code})"
         )
 
 
@@ -33,5 +36,5 @@ class DependencyTrackApiError(Error):
 
     def __init__(self, description, response):
         self.message = (
-            f"{description}: '{response.json()['message']}' ({response.status_code})"
+            f"{description}: '{json.loads(response.text)['message']}' ({response.status_code})"
         )
