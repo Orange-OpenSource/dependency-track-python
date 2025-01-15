@@ -35,11 +35,16 @@ class DependencyTrackApiError(Error):
     """Error during a DependencyTrack GET request"""
 
     def __init__(self, description, response):
-        errors = json.loads(response.text)
-        messages = ""
-        for error in errors:
-            messages += f"{error['message']}\n"
+        if response.status_code == 400:
+            errors = json.loads(response.text)
+            messages = ""
+            for error in errors:
+                messages += f"{error['message']}\n"
 
-        self.message = (
-            f"{description}: {messages} ({response.status_code})"
-        )
+            self.message = (
+                f"{description}: {messages} ({response.status_code})"
+            )
+        else:
+            self.message = {
+                f"{description}: {response.reason} ({response.status_code})"
+            }
